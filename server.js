@@ -3,7 +3,7 @@
 const express = require('express');    // Import the Express module for web server functionality
 const fs = require('fs');              // File System (fs) module for file operations
 const path = require('path');          // Path module for handling and transforming file paths
-
+const cors = require('cors');
 
 const { v4: uuidv4 } = require('uuid'); // Import the uuid package to generate unique IDs.
 
@@ -11,7 +11,7 @@ const { v4: uuidv4 } = require('uuid'); // Import the uuid package to generate u
 const app = express();                 // Create an Express application instance
 const PORT = process.env.PORT || 3000; //The port on which the server will listen.
 
-
+app.use(cors());
 app.use(express.json());               // Middleware for parsing JSON and urlencoded form data
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));

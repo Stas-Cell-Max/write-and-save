@@ -182,8 +182,21 @@ const renderNoteList = async (notes) => {
 };
 
 // Gets notes from the db and renders them to the sidebar
-const getAndRenderNotes = () => getNotes().then(renderNoteList);
+// Enhanced getAndRenderNotes function
+const getAndRenderNotes = () => {
+  getNotes()
+    .then(response => {
+      console.log("Response from getNotes:", response);
+      return response.json();
+    })
+    .then(data => {
+      console.log("Data received from getNotes:", data);
+      renderNoteList(data);
+    })
+    .catch(error => console.error("Error fetching notes:", error));
+};
 
+// Event listeners
 if (window.location.pathname === '/notes') {
   saveNoteBtn.addEventListener('click', handleNoteSave);
   newNoteBtn.addEventListener('click', handleNewNoteView);
@@ -191,4 +204,5 @@ if (window.location.pathname === '/notes') {
   noteForm.addEventListener('input', handleRenderBtns);
 }
 
+// Initial call to fetch and render notes
 getAndRenderNotes();
