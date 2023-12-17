@@ -15,13 +15,13 @@ app.use(express.json());               // Middleware for parsing JSON and urlenc
 app.use(express.urlencoded({ extended: true }));
 
 
-const readFromFile = (filePath) => {  // Helper function to read and write to the db.json file
-    return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-  };
+function readFromFile(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+}
   
-  const writeToFile = (filePath, content) => {
-    fs.writeFileSync(filePath, JSON.stringify(content, null, 4));
-  };
+function writeToFile(filePath, content) {
+  fs.writeFileSync(filePath, JSON.stringify(content, null, 4));
+}
 
 //API Routes
 
