@@ -16,44 +16,47 @@ if (window.location.pathname === '/notes') {
 }
 
 // Show an element
-const show = (elem) => {
+function show(elem) {
   elem.style.display = 'inline';
-};
+}
 
 // Hide an element
-const hide = (elem) => {
+function hide(elem) {
   elem.style.display = 'none';
-};
+}
 
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
 
-const getNotes = () =>
-  fetch('http://localhost:3000/api/notes', {
+function getNotes() {
+  return fetch('http://localhost:3000/api/notes', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
     }
   });
+}
 
-const saveNote = (note) =>
-  fetch('http://localhost:3000/api/notes', {
+function saveNote(note) {
+  return fetch('http://localhost:3000/api/notes', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(note)
   });
+}
 
-const deleteNote = (id) =>
-  fetch(`http://localhost:3000/api/notes/${id}`, {
+function deleteNote(id) {
+  return fetch(`http://localhost:3000/api/notes/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
     }
   });
+}
 
-const renderActiveNote = () => {
+function renderActiveNote() {
   hide(saveNoteBtn);
   hide(clearBtn);
 
@@ -70,9 +73,9 @@ const renderActiveNote = () => {
     noteTitle.value = '';
     noteText.value = '';
   }
-};
+}
 
-const handleNoteSave = () => {
+function handleNoteSave() {
   const newNote = {
     title: noteTitle.value,
     text: noteText.value
@@ -81,10 +84,10 @@ const handleNoteSave = () => {
     getAndRenderNotes();
     renderActiveNote();
   });
-};
+}
 
 // Delete the clicked note
-const handleNoteDelete = (e) => {
+function handleNoteDelete(e) {
   // Prevents the click listener for the list from being called when the button inside of it is clicked
   e.stopPropagation();
 
@@ -99,24 +102,24 @@ const handleNoteDelete = (e) => {
     getAndRenderNotes();
     renderActiveNote();
   });
-};
+}
 
 // Sets the activeNote and displays it
-const handleNoteView = (e) => {
+function handleNoteView(e) {
   e.preventDefault();
   activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
   renderActiveNote();
-};
+}
 
 // Sets the activeNote to and empty object and allows the user to enter a new note
-const handleNewNoteView = (e) => {
+function handleNewNoteView(e) {
   activeNote = {};
   show(clearBtn);
   renderActiveNote();
-};
+}
 
 // Renders the appropriate buttons based on the state of the form
-const handleRenderBtns = () => {
+function handleRenderBtns() {
   show(clearBtn);
   if (!noteTitle.value.trim() && !noteText.value.trim()) {
     hide(clearBtn);
@@ -125,19 +128,29 @@ const handleRenderBtns = () => {
   } else {
     show(saveNoteBtn);
   }
-};
+}
 
 // Render the list of note titles
-const renderNoteList = async (notes) => {
-  let jsonNotes = await notes.json();
+function renderNoteList(notes) {
   if (window.location.pathname === '/notes') {
     noteList.forEach((el) => (el.innerHTML = ''));
   }
 
   let noteListItems = [];
 
+  notes.forEach((note) => {
+    const li = createLi(note.title);
+    li.dataset.note = JSON.stringify(note);
+
+    noteListItems.push(li);
+  });
+
+  if (window.location.pathname === '/notes') {
+    noteListItems.forEach((noteItem) => noteList[0].append(noteItem));
+  }
+
   // Returns HTML element with or without a delete button
-  const createLi = (text, delBtn = true) => {
+  function createLi(text, delBtn = true) {
     const liEl = document.createElement('li');
     liEl.classList.add('list-group-item');
 
@@ -163,7 +176,7 @@ const renderNoteList = async (notes) => {
     }
 
     return liEl;
-  };
+  }
 
   if (jsonNotes.length === 0) {
     noteListItems.push(createLi('No saved Notes', false));
@@ -183,7 +196,7 @@ const renderNoteList = async (notes) => {
 
 // Gets notes from the db and renders them to the sidebar
 // Enhanced getAndRenderNotes function
-const getAndRenderNotes = () => {
+function getAndRenderNotes() {
   getNotes()
     .then(response => {
       console.log("Complete Response:", response);
@@ -194,7 +207,7 @@ const getAndRenderNotes = () => {
       renderNoteList(data);
     })
     .catch(error => console.error("Error fetching notes:", error));
-};
+}
 
 
 // Event listeners
