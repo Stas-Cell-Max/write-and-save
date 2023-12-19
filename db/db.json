@@ -4,8 +4,13 @@
         "text": "Test text"
     },
     {
-        "title": "bla bla bla",
-        "text": "selia vie\n",
-        "id": "54a0ee7a-49cb-4af8-8a89-72acea881d01"
+        "title": "The world of web development",
+        "text": "Localhost:3000 is a popular shorthand for localhost port 3000\n\nRead more here: https://locall.host/3000/",
+        "id": "af7ade50-1b1d-4822-ae4f-c279df575341"
+    },
+    {
+        "title": "Localhost 3000 ",
+        "text": "Once we have Node.js built, let’s create our first web server. Create a file called app.js\n\nRead more here: https://locall.host/3000/",
+        "id": "00ae5243-2fe0-4f76-a0c6-3bdc878ebb23"
     }
 ]
