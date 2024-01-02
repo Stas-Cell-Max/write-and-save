@@ -57,8 +57,11 @@ https://www.geeksforgeeks.org/how-to-build-video-streaming-application-using-nod
 
 
 ## Deployment
-Access the application by following this URL:
+Heroku URL:
 https://write-and-save-b12f1a85e13a.herokuapp.com/
+
+GitHub URL:
+https://github.com/Stas-Cell-Max/write-and-save
 
 
 ## Author
