@@ -57,7 +57,8 @@ https://www.geeksforgeeks.org/how-to-build-video-streaming-application-using-nod
 
 
 ## Deployment
-[Provide instructions or a link to a guide on how to deploy the application]
+Access the application by following this URL:
+https://write-and-save-b12f1a85e13a.herokuapp.com/
 
 
 ## Author
