@@ -66,6 +66,6 @@ Stanislav Morozan
 
 
 ## Contacts
-Email: my.email@gmail.com
+Email: stanislav.morozan@gmail.com
 GitHub: https://github.com/Stas-Cell-Max
 LinkedIn: https://www.linkedin.com/in/stanislavmorozan/
